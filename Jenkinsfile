@@ -17,9 +17,20 @@ environment {
                 echo '------------------- Build Completed -------------'
             }
         }       
-        
+       stage('SonarQube analysis') {
+            environment {
+            scannerHome = tool 'sonarqube-scanner'
+            }
+        steps { 
+            echo '------------------- Sonar Started -------------'
+        withSonarQubeEnv('sonarqube-server') { // If you have configured more than one global server connection, you can specify its name
+            sh "${scannerHome}/bin/sonar-scanner"
+    }
+    echo '------------------- Sonar Analysis Completed -------------'
+  }
     }
 
 }
 
+}
 
