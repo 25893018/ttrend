@@ -53,7 +53,7 @@ environment {
 }
  }
 }
-     stage("Jar Publish") {
+     stage("Jar Publish to Frog") {
         steps {
             script {
                     echo '<--------------- Jar Publish Started --------------->'
@@ -88,7 +88,7 @@ environment {
       }
     }
 
-        stage (" Docker Publish "){
+        stage (" Docker Publish to Jfrog"){
         steps {
             script {
                echo '<--------------- Docker Publish Started --------------->'  
@@ -96,6 +96,14 @@ environment {
                     app.push()
                 }    
                echo '<--------------- Docker Publish Ended --------------->'  
+            }
+        }
+    }
+
+     stage ("kubernetes deployment "){
+        steps {
+            script {
+                sh './deploy.sh'
             }
         }
     }
