@@ -103,7 +103,7 @@ environment {
      stage ("kubernetes deploy"){
         steps {
             script {
-                sh './deploy.sh'
+                 sh 'helm install ttrend-v2 ttrend-0.1.0.tgz'
             }
         }
     }
